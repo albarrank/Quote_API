@@ -10,12 +10,18 @@ app.use(express.static('public'));
 
 // get all quotes
 app.get('/api/quotes', (req, res) => {
-    res.status(200).send('send all quotes');
+    res.status(200).send({quotes})
 })
 
 // get random quote
 app.get('/api/quotes/random', (req, res) => {
-    res.status(200).send('sent a random quote');
+    const randomQuote = getRandomElement(quotes);
+    console.log(randomQuote)
+    if (randomQuote) {
+        res.status(200).json(randomQuote);
+    } else {
+        res.status(500).send("Server Error");
+    }
 })
 
 // get quote by author
