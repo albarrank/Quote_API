@@ -18,7 +18,7 @@ app.get('/api/quotes/random', (req, res) => {
     const randomQuote = getRandomElement(quotes);
     console.log(randomQuote)
     if (randomQuote) {
-        res.status(200).json(randomQuote);
+        res.status(200).send(randomQuote);
     } else {
         res.status(500).send("Server Error");
     }
