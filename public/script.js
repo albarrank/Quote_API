@@ -56,7 +56,7 @@ fetchRandomButton.addEventListener('click', () => {
   })
   .then(response => {
     console.log(response);
-    renderQuotes([response]);
+    renderQuotes(response.quote);
   });
 });
 
