@@ -16,7 +16,8 @@ app.get('/api/quotes', (req, res) => {
     });
 
     if (person) {
-        res.send({ quotes: filterQuotes })
+        if (filterQuotes.length > 0) res.send({ quotes: filterQuotes });
+        else res.send({ quotes: [] });
 
     } else {
         res.send({ quotes: quotes })
@@ -36,8 +37,12 @@ app.get('/api/quotes/random', (req, res) => {
 // make new quote
 app.post('/api/quotes', (req, res) => {
     const { quote, person } = req.query;
-    quotes.push({ quote, person })
-    res.status(203).send('quote created');
+    if (quote && person) {
+        quotes.push({ quote, person })
+        res.status(203).send({ quote: { quote, person } });
+    } else {
+        res.status(400).send('Please put quote and author')
+    }
 })
 
 app.listen(PORT, () => {
