@@ -33,44 +33,43 @@ const renderQuotes = (quotes = []) => {
 
 fetchAllButton.addEventListener('click', () => {
   fetch('/api/quotes')
-  .then(response => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      renderError(response);
-    }
-  })
-  .then(response => {
-    renderQuotes(response.quotes);
-  });
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        renderError(response);
+      }
+    })
+    .then(response => {
+      renderQuotes(response.quotes);
+    });
 });
 
 fetchRandomButton.addEventListener('click', () => {
   fetch('/api/quotes/random')
-  .then(response => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      renderError(response);
-    }
-  })
-  .then(response => {
-    console.log(response);
-    renderQuotes(response.quote);
-  });
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        renderError(response);
+      }
+    })
+    .then(response => {
+      renderQuotes(response.quote);
+    });
 });
 
 fetchByAuthorButton.addEventListener('click', () => {
   const author = document.getElementById('author').value;
   fetch(`/api/quotes?person=${author}`)
-  .then(response => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      renderError(response);
-    }
-  })
-  .then(response => {
-    renderQuotes(response.quotes);
-  });
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        renderError(response);
+      }
+    })
+    .then(response => {
+      renderQuotes(response.quotes);
+    });
 });

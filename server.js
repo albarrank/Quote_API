@@ -15,7 +15,7 @@ app.get('/api/quotes', (req, res) => {
         return quote.person === person;
     });
 
-    if (person) {
+    if (req.query.hasOwnProperty('person')) {
         if (filterQuotes.length > 0) res.send({ quotes: filterQuotes });
         else res.send({ quotes: [] });
 
